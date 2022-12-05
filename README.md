@@ -1,19 +1,19 @@
 
 # Table of Contents
 
-1.  [Description of the problem](#orgcfeb0b8)
-    1.  [Dataset](#org21684d0)
-2.  [Preparing environment](#org65da851)
-3.  [Running the project](#org6f69822)
-    1.  [CNN training, etc.](#org6aa840b)
-    2.  [Deployment to AWS Lambda](#orgef1b17f)
-    3.  [Creating a UI](#orgfbd604d)
+1.  [Description of the problem](#org3836813)
+    1.  [Dataset](#org6bf849d)
+2.  [Preparing environment](#org1db6709)
+3.  [Running the project](#org8eb5813)
+    1.  [CNN training, etc.](#orge5c3e27)
+    2.  [Deployment to AWS Lambda](#org81c244c)
+    3.  [Creating a UI](#org896f201)
 
 This repository is the deliverable for the Capstone Project of the Machine
 Learning Zoomcamp 2022.
 
 
-<a id="orgcfeb0b8"></a>
+<a id="org3836813"></a>
 
 # Description of the problem
 
@@ -21,18 +21,34 @@ The goal of the project is to use Machine Learning to help predict breast
 cancers, based on mammography scans.
 
 
-<a id="org21684d0"></a>
+<a id="org6bf849d"></a>
 
 ## Dataset
 
 The data to be used is the "MIAS Mammography" dataset at Kaggle
-(<https://www.kaggle.com/datasets/kmader/mias-mammography>). These data can be
-found in the directory MIAS-data, though I have removed some redundant files
-from the available Kaggle data to save space. More information about the
-database can be found at <http://peipa.essex.ac.uk/info/mias.html>.
+(<https://www.kaggle.com/datasets/kmader/mias-mammography>). More information
+about the database can be found at <http://peipa.essex.ac.uk/info/mias.html>.
 
-[The data in .h5 is redundant as well, as all the data we need is Info.txt and
-the all-mias directory with all the scans.]
+The original data found in the Kaggle dataset had redundant files, and data in a
+format that Keras would not be able to use, so I pre-processed them (and store
+them in the directory MIAS-data) in the following way:
+
+-   I deleted the files all-mias.tar and all<sub>mias</sub><sub>scans.h5</sub>
+-   I converted all .pgm files in directory all-mias to .jpg format. The code used
+    to do this conversion was simply:
+    
+        import os
+        from PIL import Image
+        
+        directory = 'MIAS-data/all-mias'
+        
+        for file in os.listdir(directory):
+            f = os.path.join(directory, file)
+            if file.endswith('.pgm') and os.path.isfile(f): 
+                nfile = file.replace('.pgm','.jpg')
+                nf = os.path.join(directory, nfile)    
+                img = Image.open(f)
+                img.save(nf)
 
 There are not a lot of images in this dataset, so probably the prediction will
 not be very accurate, but for this project we want to mainly concentrate on the
@@ -41,7 +57,7 @@ contrary, my goal for the final project of the ML-Zoomcamp will be on more
 accurate prediction, and not paying so much attention to the delivery aspects.
 
 
-<a id="org65da851"></a>
+<a id="org1db6709"></a>
 
 # Preparing environment
 
@@ -62,12 +78,12 @@ jupyter-notebook &#x2013;no-browser
 which I use for development]
 
 
-<a id="org6f69822"></a>
+<a id="org8eb5813"></a>
 
 # Running the project
 
 
-<a id="org6aa840b"></a>
+<a id="orge5c3e27"></a>
 
 ## CNN training, etc.
 
@@ -75,12 +91,12 @@ Could use ideas from:
  <https://www.kaggle.com/code/kmader/pretrained-vgg16-for-mammography-classification/notebook>
 
 
-<a id="orgef1b17f"></a>
+<a id="org81c244c"></a>
 
 ## Deployment to AWS Lambda
 
 
-<a id="orgfbd604d"></a>
+<a id="org896f201"></a>
 
 ## Creating a UI
 
