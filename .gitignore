@@ -1,3 +1,10 @@
 /README.md~
 /MIAS-data/all-mias/.ipynb_checkpoints/
 /.ipynb_checkpoints/
+/MIAS-data/train_data/
+/MIAS-data/val_data/
+*~
+/images/cloud_deployment.jpg
+/images/cloud_deployment.odg
+/images/cloud_deployment.pdf
+/images/cloud_deployment.xcf
