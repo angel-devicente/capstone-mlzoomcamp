@@ -9,3 +9,4 @@
 /images/cloud_deployment.pdf
 /images/cloud_deployment.xcf
 /deployment/train_model.tflite
+*.h5
