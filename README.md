@@ -1,16 +1,16 @@
 
 # Table of Contents
 
-1.  [Description of the problem](#orgcf01559)
-    1.  [Dataset](#orga060873)
-2.  [Reproducible environment](#orgcc9edf9)
-3.  [Running the project](#org24c3295)
+1.  [Description of the problem](#org5f9e8c1)
+    1.  [Dataset](#orgfc50321)
+2.  [Reproducible environment](#org8863c54)
+3.  [Running the project](#org51cac50)
 
 This repository is the deliverable for the Capstone Project of the Machine
 Learning Zoomcamp 2022.
 
 
-<a id="orgcf01559"></a>
+<a id="org5f9e8c1"></a>
 
 # Description of the problem
 
@@ -18,7 +18,7 @@ The goal of the project is to use Machine Learning to help predict breast
 cancers, based on mammography scans.
 
 
-<a id="orga060873"></a>
+<a id="orgfc50321"></a>
 
 ## Dataset
 
@@ -27,14 +27,14 @@ The data to be used is the "MIAS Mammography" dataset at Kaggle
 about the database can be found at <http://peipa.essex.ac.uk/info/mias.html>.
 
 There are only 322 images in this dataset, so probably the prediction will not
-be very accurate, but for this project we want to mainly concentrate on the
-reproducibility and deployment aspects, so a low prediction rate will not
-concern us much. On the other hand, my goal for the final project of the
-ML-Zoomcamp will be on more accurate prediction, without paying so much
-attention to the deployment aspects.
+be very accurate, but for this project I want to mainly concentrate on
+reproducibility and deployment aspects, so a low prediction accuracy will not
+concern me. On the other hand, my goal for the final project of the ML-Zoomcamp
+will be on more accurate prediction, without paying much attention to the
+deployment aspects.
 
 
-<a id="orgcc9edf9"></a>
+<a id="org8863c54"></a>
 
 # Reproducible environment
 
@@ -49,14 +49,14 @@ or macOS, though I haven't been able to test the project in those systems*. With
 the following commands in the main directory of this repository (i.e. where the
 files `Pipfile` and `Pipfile.lock` are located:
 
-    conda create --name capstone_pr python=3.9.15
-    conda activate capstone_pr
-    pip install pipenv
-    pipenv install --python 3.9.15
-    pipenv shell
+    $ conda create --yes --name capstone_pr python=3.9.15
+    $ conda activate capstone_pr
+    (capstone_pr) $ pip install pipenv
+    (capstone_pr) $ pipenv install --python 3.9.15
+    (capstone_pr) $ pipenv shell
 
 This will give you the exact version of Python I used while developing the
-project (version 3.9.15) and all the required libraries. 
+project (version 3.9.15) and most of the required libraries. 
 
 You can verify that indeed the right library versions have been installed, and
 that you are using them by doing, for example:
@@ -79,15 +79,35 @@ that you are using them by doing, for example:
     qtconsole        : 5.4.0
     traitlets        : 5.6.0
 
+But we have to treat tensorflow in a different way, depending on whether we want
+to use a GPU for training or not, and we will have to do it manually:
+
+-   tensorflow
+    -   if we don't have a GPU, we just do:
+        
+            (capstone-mlzoomcamp) $ pip install tensorflow
+    -   if we have a GPU, we have to do:
+        
+            (capstone-mlzoomcamp) $ conda install --yes -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+            (capstone-mlzoomcamp) $ mkdir -p $CONDA_PREFIX/etc/conda/activate.d
+            (capstone-mlzoomcamp) $ echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/' > $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+            (capstone-mlzoomcamp) $ pip install tensorflow
+
 To open the project notebook, after starting the shell inside the
-`(capstone-mlzoomcamp)` environment, you can start the `jupyter-notebook` in the
-following way:
+`(capstone-mlzoomcamp)` environment and after having installed `tensorflow`, you
+can start the `jupyter-notebook` in the following way:
 
     (capstone-mlzoomcamp) $ jupyter-notebook --no-browser
 
 and open the URL provided in the output with your favourite browser. Then just
 click on the `capstone-project-notebook.ipynb` file to open the project
 notebook. 
+
+If you want to have another shell with this environment just do in the main directory:
+
+    conda activate capstone_pr
+    (capstone_pr) $ pipenv shell
+    (capstone-mlzoomcamp) $ 
 
 When you are finished with this project, you can simply close the notebook in
 your browser, and then stop `jupyter-notebook` (`Ctrl+c`) and then leave the
@@ -97,8 +117,16 @@ environment by issuing the following two commands (the first one to exit the
     (capstone-mlzoomcamp) $ exit
     (capstone_pr) $ conda deactivate
 
+If you want to also delete the created virtual environment and the conda
+environment, you can run the following commands:
 
-<a id="org24c3295"></a>
+    $ conda activate capstone_pr
+    (capstone_pr) $ pipenv --rm
+    (capstone_pr) $ conda deactivate
+    $ conda env remove -n capstone_pr
+
+
+<a id="org51cac50"></a>
 
 # Running the project
 

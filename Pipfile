@@ -5,6 +5,14 @@ name = "pypi"
 
 [packages]
 jupyter = "*"
+numpy = "*"
+pandas = "*"
+pillow = "*"
+matplotlib = "*"
+seaborn = "*"
+tqdm = "*"
+scikit-learn = "*"
+tflite-runtime = "*"
 
 [dev-packages]
 
