@@ -19,9 +19,6 @@ classes = [
     'normal'
 ]
 
-#### CHANGE THIS!!!
-url = 'https://i.ibb.co/ZXs9SJN/mdb182.jpg'
-
 def preprocess_image_from_url(url):
 
     # download from URL
