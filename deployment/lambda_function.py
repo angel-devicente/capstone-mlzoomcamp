@@ -25,13 +25,12 @@ def preprocess_image_from_url(url):
     with request.urlopen(url) as resp:
         buffer = resp.read()
     stream = BytesIO(buffer)
-    img = Image.open(stream)
-
-    if img.mode != 'RGB':
-        img = img.convert('RGB')
-
+    im = Image.open(stream)
+    img = im.resize((256,256))
+    
     x = np.array(img, dtype=np.float32)
     X = np.array([x])
+    X = np.expand_dims(X, axis=3)
     X /= 255.
     
     return X

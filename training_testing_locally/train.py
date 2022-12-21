@@ -75,18 +75,20 @@ for i in range(df_val.shape[0]):
     
 pprint("Building and training a basic CNN")
 batch_size = 20
-img_height = 1024
-img_width = 1024
+img_height = 256
+img_width = 256
 
 train_ds = tf.keras.utils.image_dataset_from_directory(
   "../MIAS-data/train_data",
   label_mode='categorical',
+  color_mode='grayscale',  
   image_size=(img_height, img_width),
   batch_size=batch_size)
 
 val_ds = tf.keras.utils.image_dataset_from_directory(
   "../MIAS-data/val_data",
   label_mode='categorical',
+  color_mode='grayscale',      
   image_size=(img_height, img_width),
   batch_size=batch_size)
 
@@ -115,22 +117,15 @@ train_ds = train_ds.map(
 
 pprint("Defining basic CNN")
 model = tf.keras.Sequential([
-    tf.keras.layers.Rescaling(1./255),
-    tf.keras.layers.Conv2D(32, (4, 4), activation='relu', input_shape = [1024,1024,1]),
-    tf.keras.layers.MaxPooling2D(),
-    tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),
-    tf.keras.layers.MaxPooling2D(),
-    tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),
-    tf.keras.layers.MaxPooling2D(),    
-    tf.keras.layers.Conv2D(32, (2, 2), activation='relu'),    
-    tf.keras.layers.Flatten(),
-    tf.keras.layers.Dense(128, activation='relu'),
-    tf.keras.layers.Dropout(0.2),        
-    tf.keras.layers.Dense(64, activation='relu'),
-    tf.keras.layers.Dropout(0.2),    
-    tf.keras.layers.Dense(32, activation='relu'),
-    tf.keras.layers.Dropout(0.2),        
-    tf.keras.layers.Dense(2,activation='softmax')
+    tf.keras.Input(shape=(256,256,1)),
+    layers.Rescaling(1./255),
+    layers.Conv2D(32, (4, 4), activation='relu'),
+    layers.MaxPooling2D(),    
+    layers.Conv2D(16, (2, 2), activation='relu'),    
+    layers.Flatten(),
+    layers.Dense(32, activation='relu'),
+    layers.Dropout(0.2),        
+    layers.Dense(2,activation='softmax')
 ])
 
 
@@ -147,7 +142,7 @@ pprint("Training the model")
 history = model.fit(
     train_ds,
     validation_data=val_ds,
-    epochs=10
+    epochs=5
 )
 
 

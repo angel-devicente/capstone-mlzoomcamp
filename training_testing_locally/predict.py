@@ -3,10 +3,8 @@ import tensorflow as tf
 import numpy as np
 from tensorflow import keras
 from PIL import Image
-from tensorflow.keras.preprocessing.image import load_img
 
 model = keras.models.load_model('train_model.h5')
-#img = Image.open('../MIAS-data/all-mias/mdb001.jpg')
 
 classes = [
     'abnormal',
@@ -21,8 +19,9 @@ print("================================")
 for filename in os.listdir('../MIAS-data/val_data/abnormal'):
     f = os.path.join('../MIAS-data/val_data/abnormal', filename)
     if os.path.isfile(f):
-        img = load_img(f)
-
+        im = Image.open(f)
+        img = im.resize((256,256))
+        
         x = np.array(img,dtype=np.float32)
         X = np.array([x])
 
@@ -42,8 +41,9 @@ print("===================================")
 for filename in os.listdir('../MIAS-data/val_data/normal'):
     f = os.path.join('../MIAS-data/val_data/normal', filename)
     if os.path.isfile(f):
-        img = load_img(f)
-
+        im = Image.open(f)
+        img = im.resize((256,256))
+        
         x = np.array(img,dtype=np.float32)
         X = np.array([x])
 
