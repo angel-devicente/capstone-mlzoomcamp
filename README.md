@@ -1,16 +1,16 @@
 
 # Table of Contents
 
-1.  [Description of the problem](#org5f9e8c1)
-    1.  [Dataset](#orgfc50321)
-2.  [Reproducible environment](#org8863c54)
-3.  [Running the project](#org51cac50)
+1.  [Description of the problem](#orge4d7b20)
+    1.  [Dataset](#orgf56c278)
+2.  [Reproducible environment](#orge2f8c6b)
+3.  [Running the project](#org360bc7e)
 
 This repository is the deliverable for the Capstone Project of the Machine
 Learning Zoomcamp 2022.
 
 
-<a id="org5f9e8c1"></a>
+<a id="orge4d7b20"></a>
 
 # Description of the problem
 
@@ -18,7 +18,7 @@ The goal of the project is to use Machine Learning to help predict breast
 cancers, based on mammography scans.
 
 
-<a id="orgfc50321"></a>
+<a id="orgf56c278"></a>
 
 ## Dataset
 
@@ -34,7 +34,7 @@ will be on more accurate prediction, without paying much attention to the
 deployment aspects.
 
 
-<a id="org8863c54"></a>
+<a id="orge2f8c6b"></a>
 
 # Reproducible environment
 
@@ -66,18 +66,18 @@ that you are using them by doing, for example:
     (capstone-mlzoomcamp) $ jupyter --version
     Selected Jupyter core packages...
     IPython          : 8.7.0
-    ipykernel        : 6.17.1
-    ipywidgets       : 8.0.2
-    jupyter_client   : 7.4.7
+    ipykernel        : 6.19.4
+    ipywidgets       : 8.0.3
+    jupyter_client   : 7.4.8
     jupyter_core     : 5.1.0
-    jupyter_server   : 1.23.3
+    jupyter_server   : 2.0.2
     jupyterlab       : not installed
     nbclient         : 0.7.2
-    nbconvert        : 7.2.5
-    nbformat         : 5.7.0
+    nbconvert        : 7.2.7
+    nbformat         : 5.7.1
     notebook         : 6.5.2
     qtconsole        : 5.4.0
-    traitlets        : 5.6.0
+    traitlets        : 5.8.0
 
 But we have to treat tensorflow in a different way, depending on whether we want
 to use a GPU for training or not, and we will have to do it manually:
@@ -126,7 +126,7 @@ environment, you can run the following commands:
     $ conda env remove -n capstone_pr
 
 
-<a id="org51cac50"></a>
+<a id="org360bc7e"></a>
 
 # Running the project
 
