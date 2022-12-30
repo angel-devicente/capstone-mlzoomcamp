@@ -1,16 +1,16 @@
 
 # Table of Contents
 
-1.  [Description of the problem](#orge4d7b20)
-    1.  [Dataset](#orgf56c278)
-2.  [Reproducible environment](#orge2f8c6b)
-3.  [Running the project](#org360bc7e)
+1.  [Description of the problem](#org568218b)
+    1.  [Dataset](#org463e9dd)
+2.  [Reproducible environment](#org900c92e)
+3.  [Running the project](#org23d1f83)
 
 This repository is the deliverable for the Capstone Project of the Machine
 Learning Zoomcamp 2022.
 
 
-<a id="orge4d7b20"></a>
+<a id="org568218b"></a>
 
 # Description of the problem
 
@@ -18,7 +18,7 @@ The goal of the project is to use Machine Learning to help predict breast
 cancers, based on mammography scans.
 
 
-<a id="orgf56c278"></a>
+<a id="org463e9dd"></a>
 
 ## Dataset
 
@@ -34,7 +34,7 @@ will be on more accurate prediction, without paying much attention to the
 deployment aspects.
 
 
-<a id="orge2f8c6b"></a>
+<a id="org900c92e"></a>
 
 # Reproducible environment
 
@@ -89,8 +89,10 @@ to use a GPU for training or not, and we will have to do it manually:
     -   if we have a GPU, we have to do:
         
             (capstone-mlzoomcamp) $ conda install --yes -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+            (capstone-mlzoomcamp) $ conda install --yes -c nvidia cuda-nvcc
             (capstone-mlzoomcamp) $ mkdir -p $CONDA_PREFIX/etc/conda/activate.d
             (capstone-mlzoomcamp) $ echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/' > $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+            (capstone-mlzoomcamp) $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/
             (capstone-mlzoomcamp) $ pip install tensorflow
 
 To open the project notebook, after starting the shell inside the
@@ -126,7 +128,7 @@ environment, you can run the following commands:
     $ conda env remove -n capstone_pr
 
 
-<a id="org360bc7e"></a>
+<a id="org23d1f83"></a>
 
 # Running the project
 
